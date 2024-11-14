@@ -6,11 +6,28 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import React, { Suspense } from 'react'
 
+
+import { unstable_cache as cache } from 'next/cache'
+
 type TProps = {
     params: {
         category: string;
     };
 };
+
+const getData = cache(
+    (category) => fetch(
+        `${baseURL}/api/v2/categories?slug=${category}`).then(res => res.json()),
+    ['getData'],
+    { revalidate: 300 }
+)
+
+// export async function generateMetadata() {
+//   const data = await getData();
+//   return { title: data.title };
+// }
+
+
 
 export async function generateMetadata(
     { params }: TProps,
@@ -19,9 +36,7 @@ export async function generateMetadata(
     const category = params.category;
 
     // fetch data
-    const res = await fetch(
-        `${baseURL}/api/v2/categories?slug=${category}`
-    ).then((res) => res.json());
+    const res = await getData(category);
 
     const categoryData: ICategory = res[0];
     return {
