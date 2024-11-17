@@ -50,18 +50,18 @@ const fetchTemplate = async () => {
 //   return res.json();
 // };
 
-const fetchReaderInterest = async () => {
-  const res = await fetch(`${baseURL}/api/v2/home?tags=পাঠকের আগ্রহ`);
-  return res.json();
-};
-const fetchSportsHighlightVideo = async () => {
-  const res = await fetch(`${baseURL}/api/v2/videos?tags=খেলা-ভিডিও`);
-  return res.json();
-};
-const fetchEntertainmentHighlightVideo = async () => {
-  const res = await fetch(`${baseURL}/api/v2/videos?tags=বিনোদন-ভিডিও`);
-  return res.json();
-};
+// const fetchReaderInterest = async () => {
+//   const res = await fetch(`${baseURL}/api/v2/home?tags=পাঠকের আগ্রহ`);
+//   return res.json();
+// };
+// const fetchSportsHighlightVideo = async () => {
+//   const res = await fetch(`${baseURL}/api/v2/videos?tags=খেলা-ভিডিও`);
+//   return res.json();
+// };
+// const fetchEntertainmentHighlightVideo = async () => {
+//   const res = await fetch(`${baseURL}/api/v2/videos?tags=বিনোদন-ভিডিও`);
+//   return res.json();
+// };
 
 // const fetchPrintStories = async () => {
 //   const res = await fetch(`${baseURL}/api/v2/home?tags=ছাপা সংস্করণ`);
@@ -76,25 +76,25 @@ export default async function Home() {
 
   const dataPromise = fetchTemplate();
   // const most_read_storiesPromise = fetchMostReads();
-  const readerInterestResponsePromise = fetchReaderInterest();
-  const sportsHighlightVideoResponsePromise = await fetchSportsHighlightVideo();
-  const entertainmentHighlightVideoResponsePromise =
-    await fetchEntertainmentHighlightVideo();
+  // const readerInterestResponsePromise = fetchReaderInterest();
+  // const sportsHighlightVideoResponsePromise = await fetchSportsHighlightVideo();
+  // const entertainmentHighlightVideoResponsePromise =
+  // await fetchEntertainmentHighlightVideo();
   // const printStoriesPromise = fetchPrintStories();
 
   const [
     data,
     // most_read_stories,
-    readerInterestResponse,
-    sportsHighlightVideoResponse,
-    entertainmentHighlightVideoResponse,
+    // readerInterestResponse,
+    // sportsHighlightVideoResponse,
+    // entertainmentHighlightVideoResponse,
     // printStoriesResponse,
   ] = await Promise.all([
     dataPromise,
     // most_read_storiesPromise,
-    readerInterestResponsePromise,
-    sportsHighlightVideoResponsePromise,
-    entertainmentHighlightVideoResponsePromise,
+    // readerInterestResponsePromise,
+    // sportsHighlightVideoResponsePromise,
+    // entertainmentHighlightVideoResponsePromise,
     // printStoriesPromise,
   ]);
 
@@ -113,18 +113,18 @@ export default async function Home() {
       parseInt(a.template_order_number) - parseInt(b.template_order_number)
   );
 
-  const readerInterestStories: IStoryDetails[] =
-    readerInterestResponse?.results;
+  // const readerInterestStories: IStoryDetails[] =
+  //   readerInterestResponse?.results;
   const renderedTemplateNames = new Set<string>();
 
-  const sportsHighlightVideo: IStoryDetails =
-    sportsHighlightVideoResponse?.results?.length > 0
-      ? sportsHighlightVideoResponse?.results[0]
-      : null;
-  const entertainmentHighlightVideo: IStoryDetails =
-    entertainmentHighlightVideoResponse?.results?.length > 0
-      ? entertainmentHighlightVideoResponse?.results[0]
-      : null;
+  // const sportsHighlightVideo: IStoryDetails =
+  //   sportsHighlightVideoResponse?.results?.length > 0
+  //     ? sportsHighlightVideoResponse?.results[0]
+  //     : null;
+  // const entertainmentHighlightVideo: IStoryDetails =
+  //   entertainmentHighlightVideoResponse?.results?.length > 0
+  //     ? entertainmentHighlightVideoResponse?.results[0]
+  //     : null;
   return (
     <>
       {/* <Ad adId={"Popup_HP"}></Ad> */}
@@ -134,7 +134,8 @@ export default async function Home() {
       </div>
       <LeadSection
         stories={featured1}
-        readerInterestedStories={readerInterestStories}
+        // readerInterestedStories={readerInterestStories}
+        readerInterestedStories={[]}
       />
       {orderedTemplates.map((template) => {
         const shouldRepeat = templateConfig[template.template_name] || false;
@@ -174,7 +175,7 @@ export default async function Home() {
                 stories={template.stories.slice(0, 11)}
                 title={template?.category?.name}
                 category={template.category}
-                video={sportsHighlightVideo}
+              // video={sportsHighlightVideo}
               />
             );
           // case "FourStoriesWithCards":
@@ -214,7 +215,8 @@ export default async function Home() {
                 stories={template.stories.slice(0, 7)}
                 title={template?.category?.name}
                 category={template.category}
-                video={entertainmentHighlightVideo}
+              // video={entertainmentHighlightVideo}
+              // video={null}
               />
             );
           case "SevenStoriesOneBig":

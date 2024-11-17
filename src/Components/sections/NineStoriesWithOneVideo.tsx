@@ -32,14 +32,15 @@ interface INineStoriesWithOneVideo {
   stories: IStory[];
   title: string;
   category: ICategory;
-  video: IStoryDetails;
+  // video: IStoryDetails;
+  // video: null;
 }
 
 function NineStoriesWithOneVideo({
   stories,
   title,
   category,
-  video,
+  // video,
 }: INineStoriesWithOneVideo) {
   return (
     <Section>
@@ -177,7 +178,7 @@ function NineStoriesWithOneVideo({
                   </h2>
                 </Link>
               </div>
-              {video && (
+              {/* {video && (
                 <VideoCard
                   title={video?.title}
                   imageUrl={video.video_thumbnail?.url || ""}
@@ -188,7 +189,7 @@ function NineStoriesWithOneVideo({
                     false
                   )}
                 />
-              )}
+              )} */}
             </div>
           </div>
         </div>

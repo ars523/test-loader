@@ -22,10 +22,10 @@ interface ISevenStoriesWithVideoAndAdProps {
     title: string;
     stories: IStory[];
     category: ICategory;
-    video: IStoryDetails;
+    // video: IStoryDetails;
 }
 
-function SevenStoriesWithVideoAndAd({ title, stories, category, video }: ISevenStoriesWithVideoAndAdProps) {
+function SevenStoriesWithVideoAndAd({ title, stories, category }: ISevenStoriesWithVideoAndAdProps) {
     return (
         <Section>
             <div className='container'>
@@ -147,7 +147,7 @@ function SevenStoriesWithVideoAndAd({ title, stories, category, video }: ISevenS
                                     <h2 className='text-[#006563] text-2xl font-semibold'>ভিডিও</h2>
                                 </Link>
                             </div>
-                            {
+                            {/* {
                                 video && (
                                     <VideoCard
                                         title={video?.title}
@@ -157,7 +157,7 @@ function SevenStoriesWithVideoAndAd({ title, stories, category, video }: ISevenS
                                         caption={get150Characters(video?.excerpt) + '...'}
                                     />
                                 )
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>
