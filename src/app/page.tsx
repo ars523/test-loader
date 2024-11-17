@@ -74,7 +74,7 @@ export default async function Home() {
     FourStoriesWithCards: true,
   };
 
-  const dataPromise = fetchTemplate();
+  const data = await fetchTemplate();
   // const most_read_storiesPromise = fetchMostReads();
   // const readerInterestResponsePromise = fetchReaderInterest();
   // const sportsHighlightVideoResponsePromise = await fetchSportsHighlightVideo();
@@ -82,21 +82,21 @@ export default async function Home() {
   // await fetchEntertainmentHighlightVideo();
   // const printStoriesPromise = fetchPrintStories();
 
-  const [
-    data,
-    // most_read_stories,
-    // readerInterestResponse,
-    // sportsHighlightVideoResponse,
-    // entertainmentHighlightVideoResponse,
-    // printStoriesResponse,
-  ] = await Promise.all([
-    dataPromise,
-    // most_read_storiesPromise,
-    // readerInterestResponsePromise,
-    // sportsHighlightVideoResponsePromise,
-    // entertainmentHighlightVideoResponsePromise,
-    // printStoriesPromise,
-  ]);
+  // const [
+  //   data,
+  //   // most_read_stories,
+  //   // readerInterestResponse,
+  //   // sportsHighlightVideoResponse,
+  //   // entertainmentHighlightVideoResponse,
+  //   // printStoriesResponse,
+  // ] = await Promise.all([
+  //   dataPromise,
+  //   // most_read_storiesPromise,
+  //   // readerInterestResponsePromise,
+  //   // sportsHighlightVideoResponsePromise,
+  //   // entertainmentHighlightVideoResponsePromise,
+  //   // printStoriesPromise,
+  // ]);
 
   const templates: ITemplate[] = data.results;
 
