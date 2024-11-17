@@ -79,26 +79,26 @@ export default async function RootLayout({
 
         {/* <!--google analytics--> */}
         {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-        <Script
+        {/* <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-6ZVH2R86GG"
-        ></Script>
+        ></Script> */}
         <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-          window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-	gtag('set', 'page_path', urlCategoryDetails);
-	gtag('set', 'page_location', window.location.href);
+        //         id="google-analytics"
+        //         strategy="afterInteractive"
+        //         dangerouslySetInnerHTML={{
+        //           __html: `
+        //         window.dataLayer = window.dataLayer || [];
+        // function gtag(){dataLayer.push(arguments);}
+        // gtag('js', new Date());
+        // gtag('set', 'page_path', urlCategoryDetails);
+        // gtag('set', 'page_location', window.location.href);
 
-  gtag('config', 'G-6ZVH2R86GG');
- 
-  gtag('config', 'UA-193676574-1');
-        `,
-          }}
+        // gtag('config', 'G-6ZVH2R86GG');
+
+        // gtag('config', 'UA-193676574-1');
+        //       `,
+        //         }}
 
         /* gtag config */
         />
@@ -106,21 +106,21 @@ export default async function RootLayout({
 
         {/* <!-- Google Tag_Manger Code --> */}
 
-        <GoogleTagManager gtmId="GTM-W6ZKJD6" />
+        {/* <GoogleTagManager gtmId="GTM-W6ZKJD6" /> */}
 
         {/* <!-- Google Tag_Manger Code --> */}
 
         {/* <!-- Google Adsense Code --> */}
-        <Script
+        {/* <Script
           id="adsbygoogle-init"
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5261331564832462`}
           crossOrigin="anonymous"
-        ></Script>
+        ></Script> */}
         {/* <!-- Google Adsense Code --> */}
 
         {/* <!-- Facebook Pixel Code --> */}
-        <Script
+        {/* <Script
           id=""
           dangerouslySetInnerHTML={{
             __html: `
@@ -137,15 +137,15 @@ fbq('init', '789528345043763');
 fbq('track', 'PageView');
         `,
           }}
-        />
+        /> */}
 
         {/* <!-- Google AdSense Code --> */}
-        <Script
+        {/* <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5261331564832462"
           crossOrigin="anonymous"
           type="bc74e4e88bd29c17d6c867f0-text/javascript"
-        ></Script>
+        ></Script> */}
         {/* <!-- End AdSense Code --> */}
 
         {/* <!-- Start GPT Tag --> */}
@@ -163,23 +163,23 @@ fbq('track', 'PageView');
           {/* <Header menuItems={menuItems} drawerItems={drawerItems} /> */}
           <Head2 menuItems={menuItems} drawerItems={drawerItems} />
           {/* <!-- Google Tag Manager (noscript) --> */}
-          <noscript>
+          {/* <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-W6ZKJD6"
               height="0"
               width="0"
               style={{ display: "none", visibility: "hidden" }}
             ></iframe>
-          </noscript>
+          </noscript> */}
           {/* <!-- End Google Tag Manager (noscript) --> */}
-          <noscript>
+          {/* <noscript>
             <img
               height="1"
               width="1"
               src="https://www.facebook.com/tr?id=789528345043763&ev=PageView&noscript=1"
               alt=""
             />
-          </noscript>
+          </noscript> */}
           {/* <!-- End Facebook Pixel Code --> */}
           {children}
 
