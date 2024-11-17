@@ -26,27 +26,27 @@ export const metadata: Metadata = {
 };
 export const revalidate = 60;
 
-const fetchMenus = async () => {
-  const res = await fetch(`${baseURL}/api/v2/menus`);
-  return res.json();
-};
+// const fetchMenus = async () => {
+//   const res = await fetch(`${baseURL}/api/v2/menus`);
+//   return res.json();
+// };
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const menusRes = await fetchMenus();
-  const menus: IMenu[] = menusRes.results;
-  const menuItems: IMenu | undefined = menus.find(
-    (menu) => menu.slug === "menu"
-  );
-  const drawerItems: IMenu | undefined = menus.find(
-    (menu) => menu.slug === "big-menu"
-  );
-  const footerItems: IMenu | undefined = menus.find(
-    (menu) => menu.slug === "footer-menu"
-  );
+  // const menusRes = await fetchMenus();
+  // const menus: IMenu[] = menusRes.results;
+  // const menuItems: IMenu | undefined = menus.find(
+  //   (menu) => menu.slug === "menu"
+  // );
+  // const drawerItems: IMenu | undefined = menus.find(
+  //   (menu) => menu.slug === "big-menu"
+  // );
+  // const footerItems: IMenu | undefined = menus.find(
+  //   (menu) => menu.slug === "footer-menu"
+  // );
 
   return (
     <html lang="en">
@@ -56,7 +56,7 @@ export default async function RootLayout({
           content="Fz1m40_dJ8TkrssPMHgrlR8GtHQh9S1iue-UJQZim_Q"
         />
         <meta name="google-site-verification" content="0IqXoeBYMIu5nDYrJVA5XLkFXLhHm5LQ9mkqry1WZcE" />
-        
+
         {/* <!--Third party add script start--> */}
         {/* <Script type="text/javascript"
           src="//cdn.bilsyndication.com/w/6481958a-fee4-4f4b-ab29-50774d9ca985.js" async
@@ -74,7 +74,7 @@ export default async function RootLayout({
           src="//cdn.bilsyndication.com/ata/adv/6481958a-fee4-4f4b-ab29-50774d9ca985.js" async
           defer></Script> */}
 
-          {/* <ThirdPartyAd/> */}
+        {/* <ThirdPartyAd/> */}
         {/* <!--Third party add script end--> */}
 
         {/* <!--google analytics--> */}
@@ -161,7 +161,7 @@ fbq('track', 'PageView');
       <body className={inter.className}>
         <AntdRegistry>
           {/* <Header menuItems={menuItems} drawerItems={drawerItems} /> */}
-          <Head2 menuItems={menuItems} drawerItems={drawerItems} />
+          {/* <Head2 menuItems={menuItems} drawerItems={drawerItems} /> */}
           {/* <!-- Google Tag Manager (noscript) --> */}
           <noscript>
             <iframe
@@ -205,7 +205,7 @@ fbq('track', 'PageView');
           </div> */}
           {/*  <!-- /22653932740/Popup_HP -->*/}
 
-          <Footer footerItems={footerItems} />
+          {/* <Footer footerItems={footerItems} /> */}
         </AntdRegistry>
       </body>
     </html>
