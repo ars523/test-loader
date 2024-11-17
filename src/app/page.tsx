@@ -45,10 +45,10 @@ const fetchTemplate = async () => {
   return res.json();
 };
 
-const fetchMostReads = async () => {
-  const res = await fetch(`${baseURL}/api/v2/most-read-stories`);
-  return res.json();
-};
+// const fetchMostReads = async () => {
+//   const res = await fetch(`${baseURL}/api/v2/most-read-stories`);
+//   return res.json();
+// };
 
 const fetchReaderInterest = async () => {
   const res = await fetch(`${baseURL}/api/v2/home?tags=পাঠকের আগ্রহ`);
@@ -63,10 +63,10 @@ const fetchEntertainmentHighlightVideo = async () => {
   return res.json();
 };
 
-const fetchPrintStories = async () => {
-  const res = await fetch(`${baseURL}/api/v2/home?tags=ছাপা সংস্করণ`);
-  return res.json();
-}
+// const fetchPrintStories = async () => {
+//   const res = await fetch(`${baseURL}/api/v2/home?tags=ছাপা সংস্করণ`);
+//   return res.json();
+// }
 
 export default async function Home() {
   // Config object to control repetition of templates
@@ -75,27 +75,27 @@ export default async function Home() {
   };
 
   const dataPromise = fetchTemplate();
-  const most_read_storiesPromise = fetchMostReads();
+  // const most_read_storiesPromise = fetchMostReads();
   const readerInterestResponsePromise = fetchReaderInterest();
   const sportsHighlightVideoResponsePromise = await fetchSportsHighlightVideo();
   const entertainmentHighlightVideoResponsePromise =
     await fetchEntertainmentHighlightVideo();
-  const printStoriesPromise = fetchPrintStories();
+  // const printStoriesPromise = fetchPrintStories();
 
   const [
     data,
-    most_read_stories,
+    // most_read_stories,
     readerInterestResponse,
     sportsHighlightVideoResponse,
     entertainmentHighlightVideoResponse,
-    printStoriesResponse,
+    // printStoriesResponse,
   ] = await Promise.all([
     dataPromise,
-    most_read_storiesPromise,
+    // most_read_storiesPromise,
     readerInterestResponsePromise,
     sportsHighlightVideoResponsePromise,
     entertainmentHighlightVideoResponsePromise,
-    printStoriesPromise,
+    // printStoriesPromise,
   ]);
 
   const templates: ITemplate[] = data.results;
@@ -157,16 +157,16 @@ export default async function Home() {
                 category={template.category}
               />
             );
-          case "TenStoriesOneBig":
-            return (
-              <TenStoriesOneBig
-                key={template.id}
-                stories={template.stories.slice(0, 4)}
-                mostReads={featured2 || []}
-                title={"সর্বাধিক পঠিত ও ফ্যাক্টচেক"}
-                category={template.category}
-              />
-            );
+          // case "TenStoriesOneBig":
+          //   return (
+          //     <TenStoriesOneBig
+          //       key={template.id}
+          //       stories={template.stories.slice(0, 4)}
+          //       mostReads={featured2 || []}
+          //       title={"সর্বাধিক পঠিত ও ফ্যাক্টচেক"}
+          //       category={template.category}
+          //     />
+          //   );
           case "NineStoriesWithOneVideo":
             return (
               <NineStoriesWithOneVideo
@@ -177,27 +177,27 @@ export default async function Home() {
                 video={sportsHighlightVideo}
               />
             );
-          case "FourStoriesWithCards":
-            if (template?.category?.slug === "epaper") {
-              return (
-                <FourTagStoriesWithCards
-                  key={template.id}
-                  stories={printStoriesResponse?.results?.slice(0, 4)}
-                  title={template?.category?.name}
-                  titleRef={'/topic/ছাপা সংস্করণ'}
-                />
-              )
-            }
-            else {
-              return (
-                <FourStoriesWithCards
-                  key={template.id}
-                  stories={template.stories.slice(0, 4)}
-                  title={template?.category?.name}
-                  category={template.category}
-                />
-              );
-            }
+          // case "FourStoriesWithCards":
+          //   if (template?.category?.slug === "epaper") {
+          //     return (
+          //       <FourTagStoriesWithCards
+          //         key={template.id}
+          //         stories={printStoriesResponse?.results?.slice(0, 4)}
+          //         title={template?.category?.name}
+          //         titleRef={'/topic/ছাপা সংস্করণ'}
+          //       />
+          //     )
+          //   }
+          //   else {
+          //     return (
+          //       <FourStoriesWithCards
+          //         key={template.id}
+          //         stories={template.stories.slice(0, 4)}
+          //         title={template?.category?.name}
+          //         category={template.category}
+          //       />
+          //     );
+          //   }
           case "ThreeStoriesWithFiltering":
             return (
               <ThreeStoriesWithFiltering
