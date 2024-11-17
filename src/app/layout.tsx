@@ -37,16 +37,16 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const menusRes = await fetchMenus();
-  const menus: IMenu[] = menusRes.results;
-  const menuItems: IMenu | undefined = menus.find(
-    (menu) => menu.slug === "menu"
-  );
-  const drawerItems: IMenu | undefined = menus.find(
-    (menu) => menu.slug === "big-menu"
-  );
-  const footerItems: IMenu | undefined = menus.find(
-    (menu) => menu.slug === "footer-menu"
-  );
+  // const menus: IMenu[] = menusRes.results;
+  // const menuItems: IMenu | undefined = menus.find(
+  //   (menu) => menu.slug === "menu"
+  // );
+  // const drawerItems: IMenu | undefined = menus.find(
+  //   (menu) => menu.slug === "big-menu"
+  // );
+  // const footerItems: IMenu | undefined = menus.find(
+  //   (menu) => menu.slug === "footer-menu"
+  // );
 
   return (
     <html lang="en">
@@ -161,7 +161,7 @@ fbq('track', 'PageView');
       <body className={inter.className}>
         <AntdRegistry>
           {/* <Header menuItems={menuItems} drawerItems={drawerItems} /> */}
-          <Head2 menuItems={menuItems} drawerItems={drawerItems} />
+          {/* <Head2 menuItems={menuItems} drawerItems={drawerItems} /> */}
           {/* <!-- Google Tag Manager (noscript) --> */}
           <noscript>
             <iframe
@@ -205,7 +205,7 @@ fbq('track', 'PageView');
           </div> */}
           {/*  <!-- /22653932740/Popup_HP -->*/}
 
-          <Footer footerItems={footerItems} />
+          {/* <Footer footerItems={footerItems} /> */}
         </AntdRegistry>
       </body>
     </html>
