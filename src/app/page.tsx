@@ -45,28 +45,28 @@ const fetchTemplate = async () => {
   return res.json();
 };
 
-// const fetchMostReads = async () => {
-//   const res = await fetch(`${baseURL}/api/v2/most-read-stories`);
-//   return res.json();
-// };
+const fetchMostReads = async () => {
+  const res = await fetch(`${baseURL}/api/v2/most-read-stories`);
+  return res.json();
+};
 
-// const fetchReaderInterest = async () => {
-//   const res = await fetch(`${baseURL}/api/v2/home?tags=পাঠকের আগ্রহ`);
-//   return res.json();
-// };
-// const fetchSportsHighlightVideo = async () => {
-//   const res = await fetch(`${baseURL}/api/v2/videos?tags=খেলা-ভিডিও`);
-//   return res.json();
-// };
-// const fetchEntertainmentHighlightVideo = async () => {
-//   const res = await fetch(`${baseURL}/api/v2/videos?tags=বিনোদন-ভিডিও`);
-//   return res.json();
-// };
+const fetchReaderInterest = async () => {
+  const res = await fetch(`${baseURL}/api/v2/home?tags=পাঠকের আগ্রহ`);
+  return res.json();
+};
+const fetchSportsHighlightVideo = async () => {
+  const res = await fetch(`${baseURL}/api/v2/videos?tags=খেলা-ভিডিও`);
+  return res.json();
+};
+const fetchEntertainmentHighlightVideo = async () => {
+  const res = await fetch(`${baseURL}/api/v2/videos?tags=বিনোদন-ভিডিও`);
+  return res.json();
+};
 
-// const fetchPrintStories = async () => {
-//   const res = await fetch(`${baseURL}/api/v2/home?tags=ছাপা সংস্করণ`);
-//   return res.json();
-// }
+const fetchPrintStories = async () => {
+  const res = await fetch(`${baseURL}/api/v2/home?tags=ছাপা সংস্করণ`);
+  return res.json();
+}
 
 export default async function Home() {
   // Config object to control repetition of templates
@@ -74,29 +74,29 @@ export default async function Home() {
     FourStoriesWithCards: true,
   };
 
-  const data = await fetchTemplate();
-  // const most_read_storiesPromise = fetchMostReads();
-  // const readerInterestResponsePromise = fetchReaderInterest();
-  // const sportsHighlightVideoResponsePromise = await fetchSportsHighlightVideo();
-  // const entertainmentHighlightVideoResponsePromise =
-  // await fetchEntertainmentHighlightVideo();
-  // const printStoriesPromise = fetchPrintStories();
+  const dataPromise = fetchTemplate();
+  const most_read_storiesPromise = fetchMostReads();
+  const readerInterestResponsePromise = fetchReaderInterest();
+  const sportsHighlightVideoResponsePromise = await fetchSportsHighlightVideo();
+  const entertainmentHighlightVideoResponsePromise =
+    await fetchEntertainmentHighlightVideo();
+  const printStoriesPromise = fetchPrintStories();
 
-  // const [
-  //   data,
-  //   // most_read_stories,
-  //   // readerInterestResponse,
-  //   // sportsHighlightVideoResponse,
-  //   // entertainmentHighlightVideoResponse,
-  //   // printStoriesResponse,
-  // ] = await Promise.all([
-  //   dataPromise,
-  //   // most_read_storiesPromise,
-  //   // readerInterestResponsePromise,
-  //   // sportsHighlightVideoResponsePromise,
-  //   // entertainmentHighlightVideoResponsePromise,
-  //   // printStoriesPromise,
-  // ]);
+  const [
+    data,
+    most_read_stories,
+    readerInterestResponse,
+    sportsHighlightVideoResponse,
+    entertainmentHighlightVideoResponse,
+    printStoriesResponse,
+  ] = await Promise.all([
+    dataPromise,
+    most_read_storiesPromise,
+    readerInterestResponsePromise,
+    sportsHighlightVideoResponsePromise,
+    entertainmentHighlightVideoResponsePromise,
+    printStoriesPromise,
+  ]);
 
   const templates: ITemplate[] = data.results;
 
@@ -113,18 +113,18 @@ export default async function Home() {
       parseInt(a.template_order_number) - parseInt(b.template_order_number)
   );
 
-  // const readerInterestStories: IStoryDetails[] =
-  //   readerInterestResponse?.results;
+  const readerInterestStories: IStoryDetails[] =
+    readerInterestResponse?.results;
   const renderedTemplateNames = new Set<string>();
 
-  // const sportsHighlightVideo: IStoryDetails =
-  //   sportsHighlightVideoResponse?.results?.length > 0
-  //     ? sportsHighlightVideoResponse?.results[0]
-  //     : null;
-  // const entertainmentHighlightVideo: IStoryDetails =
-  //   entertainmentHighlightVideoResponse?.results?.length > 0
-  //     ? entertainmentHighlightVideoResponse?.results[0]
-  //     : null;
+  const sportsHighlightVideo: IStoryDetails =
+    sportsHighlightVideoResponse?.results?.length > 0
+      ? sportsHighlightVideoResponse?.results[0]
+      : null;
+  const entertainmentHighlightVideo: IStoryDetails =
+    entertainmentHighlightVideoResponse?.results?.length > 0
+      ? entertainmentHighlightVideoResponse?.results[0]
+      : null;
   return (
     <>
       {/* <Ad adId={"Popup_HP"}></Ad> */}
@@ -134,8 +134,7 @@ export default async function Home() {
       </div>
       <LeadSection
         stories={featured1}
-        // readerInterestedStories={readerInterestStories}
-        readerInterestedStories={[]}
+        readerInterestedStories={readerInterestStories}
       />
       {orderedTemplates.map((template) => {
         const shouldRepeat = templateConfig[template.template_name] || false;
@@ -158,16 +157,16 @@ export default async function Home() {
                 category={template.category}
               />
             );
-          // case "TenStoriesOneBig":
-          //   return (
-          //     <TenStoriesOneBig
-          //       key={template.id}
-          //       stories={template.stories.slice(0, 4)}
-          //       mostReads={featured2 || []}
-          //       title={"সর্বাধিক পঠিত ও ফ্যাক্টচেক"}
-          //       category={template.category}
-          //     />
-          //   );
+          case "TenStoriesOneBig":
+            return (
+              <TenStoriesOneBig
+                key={template.id}
+                stories={template.stories.slice(0, 4)}
+                mostReads={featured2 || []}
+                title={"সর্বাধিক পঠিত ও ফ্যাক্টচেক"}
+                category={template.category}
+              />
+            );
           case "NineStoriesWithOneVideo":
             return (
               <NineStoriesWithOneVideo
@@ -175,30 +174,30 @@ export default async function Home() {
                 stories={template.stories.slice(0, 11)}
                 title={template?.category?.name}
                 category={template.category}
-              // video={sportsHighlightVideo}
+                video={sportsHighlightVideo}
               />
             );
-          // case "FourStoriesWithCards":
-          //   if (template?.category?.slug === "epaper") {
-          //     return (
-          //       <FourTagStoriesWithCards
-          //         key={template.id}
-          //         stories={printStoriesResponse?.results?.slice(0, 4)}
-          //         title={template?.category?.name}
-          //         titleRef={'/topic/ছাপা সংস্করণ'}
-          //       />
-          //     )
-          //   }
-          //   else {
-          //     return (
-          //       <FourStoriesWithCards
-          //         key={template.id}
-          //         stories={template.stories.slice(0, 4)}
-          //         title={template?.category?.name}
-          //         category={template.category}
-          //       />
-          //     );
-          //   }
+          case "FourStoriesWithCards":
+            if (template?.category?.slug === "epaper") {
+              return (
+                <FourTagStoriesWithCards
+                  key={template.id}
+                  stories={printStoriesResponse?.results?.slice(0, 4)}
+                  title={template?.category?.name}
+                  titleRef={'/topic/ছাপা সংস্করণ'}
+                />
+              )
+            }
+            else {
+              return (
+                <FourStoriesWithCards
+                  key={template.id}
+                  stories={template.stories.slice(0, 4)}
+                  title={template?.category?.name}
+                  category={template.category}
+                />
+              );
+            }
           case "ThreeStoriesWithFiltering":
             return (
               <ThreeStoriesWithFiltering
@@ -215,8 +214,7 @@ export default async function Home() {
                 stories={template.stories.slice(0, 7)}
                 title={template?.category?.name}
                 category={template.category}
-              // video={entertainmentHighlightVideo}
-              // video={null}
+                video={entertainmentHighlightVideo}
               />
             );
           case "SevenStoriesOneBig":
